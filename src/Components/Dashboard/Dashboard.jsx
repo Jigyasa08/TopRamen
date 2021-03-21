@@ -66,16 +66,20 @@ export const Dashboard = () => {
       </Paper>
 
       <br />
-      <div style={{ width: "400px", margin: "auto" }}>
-        {/* We can either type and search for the filers or slect the various filter types from the dropdown */}
-        <SingleSelect param={param} setParam={setParam} setValue={setValue} />
-      </div>
+      <Paper
+        elevation={1}
+        style={{ maxWidth: "60%", margin: "auto", padding: "10px" }}
+      >
+        <div style={{ width: "400px", margin: "auto" }}>
+          {/* We can either type and search for the filers or slect the various filter types from the dropdown */}
+          <SingleSelect param={param} setParam={setParam} setValue={setValue} />
+        </div>
 
-      <br />
-      <Button variant="outlined" onClick={handleClear}>
-        Clear Filters
-      </Button>
-
+        <br />
+        <Button variant="outlined" onClick={handleClear}>
+          Clear Filters
+        </Button>
+      </Paper>
       <div style={{ margin: "auto", textAlign: "center" }}>
         <Grid container className={classes.root} spacing={2}>
           <Grid item xs={12}>
