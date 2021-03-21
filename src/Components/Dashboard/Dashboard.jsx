@@ -1,4 +1,5 @@
 import {
+  Button,
   FormControl,
   FormControlLabel,
   Grid,
@@ -30,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
   control: {
     padding: theme.spacing(2),
   },
+  formControl: {
+    width: 250,
+  },
 }));
 
 export const Dashboard = () => {
@@ -46,6 +50,10 @@ export const Dashboard = () => {
   const isError = useSelector((state) => state.isError);
   const restaurants = useSelector((state) => state.data);
   const uniqueRestaurants = [...new Set(restaurants.map((item) => item.Brand))];
+
+  const handleClear = () => {
+    dispatch(getRestaurantDetails());
+  };
   //   console.log(uniqueRestaurants);
   //   const handleFilter = (e) => {
   //     ;
@@ -78,19 +86,22 @@ export const Dashboard = () => {
             setParam("Brand");
           }}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           {uniqueRestaurants &&
             uniqueRestaurants.map((item) => {
               return <MenuItem value={item}> {item} </MenuItem>;
             })}
         </Select>
       </FormControl>
+      <br />
+      <br />
+      <Button variant="outlined" onClick={handleClear}>
+        Clear Filters
+      </Button>
+
       <div style={{ margin: "auto", textAlign: "center" }}>
         <Grid container className={classes.root} spacing={2}>
           <Grid item xs={12}>
-            <Grid container justify="center" spacing={3} direction="column">
+            <Grid container justify="center" spacing={2} direction="column">
               {restaurants &&
                 restaurants.map((item) => (
                   <Grid key={item.id} item>
