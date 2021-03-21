@@ -69,7 +69,6 @@ export const Dashboard = () => {
         </Typography>
       </Paper>
 
-      <br />
       <Paper
         elevation={1}
         style={{ maxWidth: "100%", margin: "auto", padding: "10px" }}
