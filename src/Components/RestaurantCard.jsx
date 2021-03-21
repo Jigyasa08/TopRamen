@@ -23,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
     height: 50,
     width: 50,
   },
-  //   .MuiCardHeader-title:{
-  // color: red
-  //   }
 }));
 
 export const RestaurantCard = ({ item }) => {

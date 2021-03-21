@@ -1,18 +1,5 @@
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  InputLabel,
-  makeStyles,
-  MenuItem,
-  Paper,
-  // Select,
-  Typography,
-} from "@material-ui/core";
+import { Button, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 
-import Select from "react-select";
-// import options from "./options";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -43,7 +30,6 @@ export const Dashboard = () => {
   const classes = useStyles();
   const [param, setParam] = useState("");
   const [value, setValue] = useState("");
-  const [year, setYear] = useState("");
 
   //onLoad get API will be called
   useEffect(() => {
@@ -53,12 +39,14 @@ export const Dashboard = () => {
   const isLoading = useSelector((state) => state.isLoading);
   const isError = useSelector((state) => state.isError);
   const restaurants = useSelector((state) => state.data);
-  const uniqueBrands = [...new Set(restaurants.map((item) => item.Brand))];
 
+  //Function to clear the applied filters
   const handleClear = () => {
-    dispatch(getRestaurantDetails());
+    setParam("");
+    setValue("");
   };
   console.log(param, value);
+
   return isLoading ? (
     <h3>Loading...</h3>
   ) : (
@@ -79,45 +67,9 @@ export const Dashboard = () => {
 
       <br />
       <div style={{ width: "400px", margin: "auto" }}>
+        {/* We can either type and search for the filers or slect the various filter types from the dropdown */}
         <SingleSelect param={param} setParam={setParam} setValue={setValue} />
       </div>
-      {/* <FormControl
-        size="small"
-        variant="filled"
-        className={classes.formControl}
-      >
-        <InputLabel>Brand</InputLabel>
-        <Select
-          value={brand}
-          onChange={(e) => {
-            setBrand(e.target.value);
-            setParam("Brand");
-          }}
-        >
-          {uniqueRestaurants &&
-            uniqueRestaurants.map((item) => {
-              return <MenuItem value={item}> {item} </MenuItem>;
-            })}
-        </Select>
-      </FormControl>
-      <FormControl
-        size="small"
-        variant="filled"
-        className={classes.formControl}
-      >
-        <InputLabel>Year</InputLabel>
-        <Select
-          value={brand}
-          onChange={(e) => {
-            setBrand(e.target.value);
-            setParam("q");
-          }}
-        >
-          {[2012, 2013, 2014, 2015, 2016].map((item) => {
-            return <MenuItem value={item}> {item} </MenuItem>;
-          })}
-        </Select>
-      </FormControl> */}
 
       <br />
       <Button variant="outlined" onClick={handleClear}>
@@ -129,11 +81,22 @@ export const Dashboard = () => {
           <Grid item xs={12}>
             <Grid container justify="center" spacing={2} direction="column">
               {restaurants &&
-                restaurants.map((item) => (
-                  <Grid key={item.Variety} item>
-                    <RestaurantCard item={item} />
-                  </Grid>
-                ))}
+                restaurants
+                  .filter((item) => {
+                    //When Ranking filter is applied return the array with the selected Rank
+                    if (param == "Ranking") {
+                      return item["Top Ten"].split(" #")[1] === value;
+                    }
+                    //For all other cases, return the same array
+                    else {
+                      return item;
+                    }
+                  })
+                  .map((item) => (
+                    <Grid key={item.Variety} item>
+                      <RestaurantCard item={item} />
+                    </Grid>
+                  ))}
             </Grid>
           </Grid>
         </Grid>

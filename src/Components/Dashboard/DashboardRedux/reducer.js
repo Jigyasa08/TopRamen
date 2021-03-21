@@ -4,12 +4,14 @@ import {
   RESTAURANT_GET_FAILURE,
 } from "./actionTypes";
 
+//Redux State
 const initState = {
   isLoading: false,
   isError: false,
   data: [],
 };
 
+//Redux Reducer
 export const reducer = (state = initState, { type, payload }) => {
   switch (type) {
     case RESTAURANT_GET_REQUEST: {
