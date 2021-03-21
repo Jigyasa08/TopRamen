@@ -15,6 +15,7 @@ Dashboard wih Search Bar where User can type and search or select the various fi
 ![Screenshot 2021-03-22 at 4 47 28 AM](https://user-images.githubusercontent.com/68864566/111924289-bd110180-8ac9-11eb-8a47-76c2ae47f6bc.png)
 
 Pagination applied:
+
 ![Screenshot 2021-03-22 at 4 53 21 AM](https://user-images.githubusercontent.com/68864566/111924434-92737880-8aca-11eb-8930-87fd2d4d95ef.png)
 
 
