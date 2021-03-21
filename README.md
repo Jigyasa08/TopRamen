@@ -10,7 +10,7 @@ npm run start
 # Screenshots
 
 # Home Page
-![Screenshot 2021-03-22 at 3 27 43 AM](https://user-images.githubusercontent.com/68864566/111923998-2b54c480-8ac8-11eb-84f6-e2640aed7023.png)
+![Screenshot 2021-03-22 at 4 47 28 AM](https://user-images.githubusercontent.com/68864566/111924289-bd110180-8ac9-11eb-8a47-76c2ae47f6bc.png)
 
 
 # Tech Stack Used
