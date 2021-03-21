@@ -32,7 +32,7 @@ export const Dashboard = () => {
   const [value, setValue] = useState("");
 
   const [currentPage, setCurrentpage] = useState(1);
-  const perPage = 5;
+  const perPage = 8;
 
   //onLoad get API will be called
   useEffect(() => {
