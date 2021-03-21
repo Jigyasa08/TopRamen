@@ -42,12 +42,13 @@ export const Dashboard = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [param, setParam] = useState("");
-  const [brand, setBrand] = useState("");
+  const [value, setValue] = useState("");
   const [year, setYear] = useState("");
+
   //onLoad get API will be called
   useEffect(() => {
-    dispatch(getRestaurantDetails(param, brand));
-  }, [brand, year]);
+    dispatch(getRestaurantDetails(param, value));
+  }, [param, value]);
 
   const isLoading = useSelector((state) => state.isLoading);
   const isError = useSelector((state) => state.isError);
@@ -57,7 +58,7 @@ export const Dashboard = () => {
   const handleClear = () => {
     dispatch(getRestaurantDetails());
   };
-
+  console.log(param, value);
   return isLoading ? (
     <h3>Loading...</h3>
   ) : (
@@ -75,11 +76,10 @@ export const Dashboard = () => {
           <br />
         </Typography>
       </Paper>
-      <br />
 
       <br />
       <div style={{ width: "400px", margin: "auto" }}>
-        <SingleSelect uniqueBrands={uniqueBrands} />
+        <SingleSelect param={param} setParam={setParam} setValue={setValue} />
       </div>
       {/* <FormControl
         size="small"
@@ -118,7 +118,7 @@ export const Dashboard = () => {
           })}
         </Select>
       </FormControl> */}
-      <br />
+
       <br />
       <Button variant="outlined" onClick={handleClear}>
         Clear Filters
@@ -130,7 +130,7 @@ export const Dashboard = () => {
             <Grid container justify="center" spacing={2} direction="column">
               {restaurants &&
                 restaurants.map((item) => (
-                  <Grid key={item.id} item>
+                  <Grid key={item.Variety} item>
                     <RestaurantCard item={item} />
                   </Grid>
                 ))}
