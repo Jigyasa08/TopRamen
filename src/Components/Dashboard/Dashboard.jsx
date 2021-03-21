@@ -72,7 +72,7 @@ export const Dashboard = () => {
       <br />
       <Paper
         elevation={1}
-        style={{ maxWidth: "60%", margin: "auto", padding: "10px" }}
+        style={{ maxWidth: "100%", margin: "auto", padding: "10px" }}
       >
         <div style={{ width: "400px", margin: "auto" }}>
           {/* We can either type and search for the filers or slect the various filter types from the dropdown */}
