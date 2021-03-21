@@ -7,18 +7,19 @@ import {
   makeStyles,
   MenuItem,
   Paper,
-  Select,
+  // Select,
   Typography,
 } from "@material-ui/core";
+
+import Select from "react-select";
+// import options from "./options";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RestaurantCard } from "../RestaurantCard";
-import {
-  filterRestaurantDetails,
-  getRestaurantDetails,
-} from "./DashboardRedux/action";
+import { getRestaurantDetails } from "./DashboardRedux/action";
+import SingleSelect from "./Options";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   formControl: {
-    width: 200,
+    width: 400,
+    margin: "auto",
   },
 }));
 
@@ -50,7 +52,7 @@ export const Dashboard = () => {
   const isLoading = useSelector((state) => state.isLoading);
   const isError = useSelector((state) => state.isError);
   const restaurants = useSelector((state) => state.data);
-  const uniqueRestaurants = [...new Set(restaurants.map((item) => item.Brand))];
+  const uniqueBrands = [...new Set(restaurants.map((item) => item.Brand))];
 
   const handleClear = () => {
     dispatch(getRestaurantDetails());
@@ -74,7 +76,12 @@ export const Dashboard = () => {
         </Typography>
       </Paper>
       <br />
-      <FormControl
+
+      <br />
+      <div style={{ width: "400px", margin: "auto" }}>
+        <SingleSelect uniqueBrands={uniqueBrands} />
+      </div>
+      {/* <FormControl
         size="small"
         variant="filled"
         className={classes.formControl}
@@ -110,7 +117,7 @@ export const Dashboard = () => {
             return <MenuItem value={item}> {item} </MenuItem>;
           })}
         </Select>
-      </FormControl>
+      </FormControl> */}
       <br />
       <br />
       <Button variant="outlined" onClick={handleClear}>
