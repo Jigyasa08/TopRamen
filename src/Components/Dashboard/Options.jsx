@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Select from "react-select";
 
+//Labels & Values for Nested Select Tag
 const options = [
   {
     label: "Brand",
@@ -91,7 +92,80 @@ const options = [
       },
     ],
   },
-
+  {
+    label: "Style",
+    options: [
+      {
+        label: "Pack",
+        value: "Style",
+      },
+      {
+        label: "Nan",
+        value: "Style",
+      },
+      {
+        label: "Tray",
+        value: "Style",
+      },
+    ],
+  },
+  {
+    label: "Country",
+    options: [
+      {
+        label: "Myanmar",
+        value: "Country",
+      },
+      {
+        label: "Singapore",
+        value: "Country",
+      },
+      {
+        label: "SG",
+        value: "Country",
+      },
+      {
+        label: "Taiwan",
+        value: "Country",
+      },
+      {
+        label: "China",
+        value: "Country",
+      },
+      {
+        label: "Malaysia",
+        value: "Country",
+      },
+      {
+        label: "JPN",
+        value: "Country",
+      },
+      {
+        label: "Japan",
+        value: "Country",
+      },
+      {
+        label: "Thailand",
+        value: "Country",
+      },
+      {
+        label: "South Korea",
+        value: "Country",
+      },
+      {
+        label: "USA",
+        value: "Country",
+      },
+      {
+        label: "Indonesia",
+        value: "Country",
+      },
+      {
+        label: "Hong Kong",
+        value: "Country",
+      },
+    ],
+  },
   {
     label: "Year",
     options: [
@@ -114,31 +188,6 @@ const options = [
       {
         label: "2016",
         value: "q",
-      },
-    ],
-  },
-  {
-    label: "Stars",
-    options: [
-      {
-        label: "4",
-        value: "Stars",
-      },
-      {
-        label: "4.25",
-        value: "Stars",
-      },
-      {
-        label: "4,5",
-        value: "Stars",
-      },
-      {
-        label: "4.75",
-        value: "Stars",
-      },
-      {
-        label: "5",
-        value: "Stars",
       },
     ],
   },
@@ -187,81 +236,32 @@ const options = [
       },
     ],
   },
+
   {
-    label: "Style",
+    label: "Stars",
     options: [
       {
-        label: "Pack",
-        value: "Style",
+        label: "4",
+        value: "Stars",
       },
       {
-        label: "Nan",
-        value: "Style",
+        label: "4.25",
+        value: "Stars",
       },
       {
-        label: "Tray",
-        value: "Style",
+        label: "4.5",
+        value: "Stars",
+      },
+      {
+        label: "4.75",
+        value: "Stars",
+      },
+      {
+        label: "5",
+        value: "Stars",
       },
     ],
   },
-
-  // {
-  //   label: "Country",
-  //   options: [
-  //     {
-  //       label: "Myanmar",
-  //       value: 1,
-  //     },
-  //     {
-  //       label: "Singapore",
-  //       value: 2,
-  //     },
-  //     {
-  //       label: "SG",
-  //       value: 1,
-  //     },
-  //     {
-  //       label: "Taiwan",
-  //       value: 2,
-  //     },
-  //     {
-  //       label: "China",
-  //       value: 1,
-  //     },
-  //     {
-  //       label: "Malaysia",
-  //       value: 2,
-  //     },
-  //     {
-  //       label: "JPN",
-  //       value: 1,
-  //     },
-  //     {
-  //       label: "Japan",
-  //       value: 2,
-  //     },
-  //     {
-  //       label: "Thailand",
-  //       value: 1,
-  //     },
-  //     {
-  //       label: "South Korea",
-  //       value: 2,
-  //     },
-  //     {
-  //       label: "USA",
-  //       value: 1,
-  //     },
-  //     {
-  //       label: "Indonesia",
-  //       value: 2,
-  //     },
-  //     {
-  //       label: "Hong Kong",
-  //       value: 2,
-  //     },
-  //   ],
-  // },
 ];
 
 export default class SingleSelect extends Component {

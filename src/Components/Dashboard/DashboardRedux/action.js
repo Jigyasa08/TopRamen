@@ -24,6 +24,7 @@ export const restaurantGetFailure = () => {
   };
 };
 
+//Action to get Data on Axios API call
 export const getRestaurantDetails = (param, value) => (dispatch) => {
   dispatch(restaurantGetRequest());
 
