@@ -20,7 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: red[500],
+    height: 50,
+    width: 50,
   },
+  //   .MuiCardHeader-title:{
+  // color: red
+  //   }
 }));
 
 export const RestaurantCard = ({ item }) => {
@@ -29,14 +34,13 @@ export const RestaurantCard = ({ item }) => {
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {item.Brand[0]}
-          </Avatar>
-        }
+        avatar={<Avatar className={classes.avatar}>{item.Brand[0]}</Avatar>}
+        titleTypographyProps={{ variant: "h6" }}
         title={item.Brand}
-        subheader={item["Top Ten"]}
+        subheaderTypographyProps={{ align: "right", variant: "body" }}
+        subheader={item["Top Ten"].split(" ")[1]}
       />
+
       <Divider />
       <CardContent style={{ textAlign: "left" }}>
         <Typography variant="h6" color="grey" style={{ fontStyle: "italic" }}>
@@ -53,9 +57,13 @@ export const RestaurantCard = ({ item }) => {
           <span style={{ fontWeight: "bolder", color: "black" }}>Country:</span>
           {item.Country}
         </Typography>
-        <Typography variant="h6" color="grey">
+        <Typography variant="h6" color="grey" style={{ fontStyle: "italic" }}>
           <span style={{ fontWeight: "bolder", color: "black" }}>Stars:</span>
           {item.Stars}
+        </Typography>
+        <Typography variant="h6" color="grey" style={{ fontStyle: "italic" }}>
+          <span style={{ fontWeight: "bolder", color: "black" }}>Year:</span>
+          {item["Top Ten"].split(" #")[0]}
         </Typography>
       </CardContent>
     </Card>

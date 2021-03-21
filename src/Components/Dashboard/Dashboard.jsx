@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   formControl: {
-    width: 250,
+    width: 200,
   },
 }));
 
@@ -41,10 +41,11 @@ export const Dashboard = () => {
   const classes = useStyles();
   const [param, setParam] = useState("");
   const [brand, setBrand] = useState("");
+  const [year, setYear] = useState("");
   //onLoad get API will be called
   useEffect(() => {
     dispatch(getRestaurantDetails(param, brand));
-  }, [brand]);
+  }, [brand, year]);
 
   const isLoading = useSelector((state) => state.isLoading);
   const isError = useSelector((state) => state.isError);
@@ -54,12 +55,7 @@ export const Dashboard = () => {
   const handleClear = () => {
     dispatch(getRestaurantDetails());
   };
-  //   console.log(uniqueRestaurants);
-  //   const handleFilter = (e) => {
-  //     ;
-  //     console.log(brand);
-  //     dispatch(filterRestaurantDetails("Brand", brand));
-  //   };
+
   return isLoading ? (
     <h3>Loading...</h3>
   ) : (
@@ -77,7 +73,12 @@ export const Dashboard = () => {
           <br />
         </Typography>
       </Paper>
-      <FormControl variant="filled" className={classes.formControl}>
+      <br />
+      <FormControl
+        size="small"
+        variant="filled"
+        className={classes.formControl}
+      >
         <InputLabel>Brand</InputLabel>
         <Select
           value={brand}
@@ -90,6 +91,24 @@ export const Dashboard = () => {
             uniqueRestaurants.map((item) => {
               return <MenuItem value={item}> {item} </MenuItem>;
             })}
+        </Select>
+      </FormControl>
+      <FormControl
+        size="small"
+        variant="filled"
+        className={classes.formControl}
+      >
+        <InputLabel>Year</InputLabel>
+        <Select
+          value={brand}
+          onChange={(e) => {
+            setBrand(e.target.value);
+            setParam("q");
+          }}
+        >
+          {[2012, 2013, 2014, 2015, 2016].map((item) => {
+            return <MenuItem value={item}> {item} </MenuItem>;
+          })}
         </Select>
       </FormControl>
       <br />
@@ -106,7 +125,6 @@ export const Dashboard = () => {
                 restaurants.map((item) => (
                   <Grid key={item.id} item>
                     <RestaurantCard item={item} />
-                    {/* <Paper className={classes.paper} /> */}
                   </Grid>
                 ))}
             </Grid>
