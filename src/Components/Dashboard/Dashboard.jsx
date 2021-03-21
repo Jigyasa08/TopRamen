@@ -1,5 +1,5 @@
 import { Button, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
-
+import { Pagination } from "./Pagination";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -31,14 +31,18 @@ export const Dashboard = () => {
   const [param, setParam] = useState("");
   const [value, setValue] = useState("");
 
+  const [currentPage, setCurrentpage] = useState(1);
+  const perPage = 5;
+
   //onLoad get API will be called
   useEffect(() => {
     dispatch(getRestaurantDetails(param, value));
-  }, [param, value]);
+  }, [param, value, currentPage]);
 
   const isLoading = useSelector((state) => state.isLoading);
   const isError = useSelector((state) => state.isError);
   const restaurants = useSelector((state) => state.data);
+  const totalPages = Math.ceil(restaurants.length / perPage);
 
   //Function to clear the applied filters
   const handleClear = () => {
@@ -80,6 +84,7 @@ export const Dashboard = () => {
           Clear Filters
         </Button>
       </Paper>
+
       <div style={{ margin: "auto", textAlign: "center" }}>
         <Grid container className={classes.root} spacing={2}>
           <Grid item xs={12}>
@@ -96,6 +101,11 @@ export const Dashboard = () => {
                       return item;
                     }
                   })
+                  .filter(
+                    (_, index) =>
+                      index >= (currentPage - 1) * perPage &&
+                      index < currentPage * perPage
+                  )
                   .map((item) => (
                     <Grid key={item.Variety} item>
                       <RestaurantCard item={item} />
@@ -104,6 +114,14 @@ export const Dashboard = () => {
             </Grid>
           </Grid>
         </Grid>
+        <br />
+        <Pagination
+          handlePage={(page) => setCurrentpage(page)}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
+        <br />
+        <br />
       </div>
       {isError && <h5>Oops, Something went wrong!</h5>}
     </Paper>
